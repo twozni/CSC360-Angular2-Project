@@ -1,0 +1,120 @@
+html{
+  background: rgba(31,156,229,1);
+  background: -moz-linear-gradient(left, rgba(31,156,229,1) 18%, rgba(31,156,229,1) 19%, rgba(72,183,234,1) 70%, rgba(72,183,234,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(18%, rgba(31,156,229,1)), color-stop(19%, rgba(31,156,229,1)), color-stop(70%, rgba(72,183,234,1)), color-stop(100%, rgba(72,183,234,1)));
+  background: -webkit-linear-gradient(left, rgba(31,156,229,1) 18%, rgba(31,156,229,1) 19%, rgba(72,183,234,1) 70%, rgba(72,183,234,1) 100%);
+  background: -o-linear-gradient(left, rgba(31,156,229,1) 18%, rgba(31,156,229,1) 19%, rgba(72,183,234,1) 70%, rgba(72,183,234,1) 100%);
+  background: -ms-linear-gradient(left, rgba(31,156,229,1) 18%, rgba(31,156,229,1) 19%, rgba(72,183,234,1) 70%, rgba(72,183,234,1) 100%);
+  background: linear-gradient(to right, rgba(31,156,229,1) 18%, rgba(31,156,229,1) 19%, rgba(72,183,234,1) 70%, rgba(72,183,234,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f9ce5', endColorstr='#48b7ea', GradientType=1 );
+}
+
+body{
+  padding: 1.5em;
+}
+
+h1 {
+  font-size: 1.2em;
+  color: black;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+  color: crimson;
+}
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer
+}
+nav a:visited, a:link {
+  color: #607D8B;
+}
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+nav a.router-link-active {
+  color: #039be5;
+}
+
+form {
+  display: inline-block;
+}
+
+div.game_grid{
+  align-content: center;
+  width: 1080px;
+  height: 580px;
+  margin: 0 auto;
+}
+
+div.game {
+  font-size: 1em;
+  margin:2em;
+  padding-top: 0;
+  display: inline-block;
+}
+
+a.game{
+  width: 140px;
+  height: 270px;
+}
+
+p.name {
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+
+p.status{
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+p.data {
+  color: #212121;
+  font-size: 0.8em;
+}
+
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#ccc;
+}
+
+input[type=submit] {
+    padding:5px 10px;
+    text-decoration: none; 
+    background:#eee; 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 4px;
+}
+
+input[type=submit]:hover {
+    padding:5px 10px;
+    text-decoration: none; 
+    color: #039be5;
+    background-color: #CFD8DC;
+    border:0 none;
+    cursor:pointer;
+    border-radius: 4px;
+}

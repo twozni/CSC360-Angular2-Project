@@ -1,0 +1,35 @@
+<html>
+
+<body>
+    <h1>Simple Twitch</h1>
+    <nav>
+        <form>
+            <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="search games..." list="games" [(ngModel)]="term">
+            <button type="submit" (click)="searchChannels(term)">Search</button>
+            <datalist id="games">
+                    <option *ngFor="#game of games | async">{{game.name}}</option>
+            </datalist>
+        </form>
+    </nav>
+    <router-outlet></router-outlet>
+    <div class="game_grid">
+        <h1>Current streams playing {{term}}</h1>
+        <div *ngIf="streams == 0">
+            <h3>No channels live</h3>
+        </div>
+        <div class="game" *ngFor="#stream of streams">
+            <a style ="text-decoration:none;" href="http://www.twitch.tv/{{stream.channel.name}}">
+                <div class="image">
+                    <img src={{stream.preview.medium}} height="180" width="320">
+                </div>
+                <div class="meta">
+                    <p class="name">{{stream.channel.display_name}}</p>
+                    <p class="status">{{stream.channel.status}}</p>
+                    <p class="data">{{stream.viewers}} viewers</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
