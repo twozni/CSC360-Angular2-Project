@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './twitch.service', 'angular2/common', './dashboard.component', './channel.component', './video.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './twitch.service', './dashboard.component', './channel.component', './video.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './twitch.service', 'angula
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, twitch_service_1, common_1, dashboard_component_1, channel_component_1, video_component_1;
+    var core_1, router_1, twitch_service_1, dashboard_component_1, channel_component_1, video_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,9 +23,6 @@ System.register(['angular2/core', 'angular2/router', './twitch.service', 'angula
             function (twitch_service_1_1) {
                 twitch_service_1 = twitch_service_1_1;
             },
-            function (common_1_1) {
-                common_1 = common_1_1;
-            },
             function (dashboard_component_1_1) {
                 dashboard_component_1 = dashboard_component_1_1;
             },
@@ -37,22 +34,8 @@ System.register(['angular2/core', 'angular2/router', './twitch.service', 'angula
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_twitchService) {
-                    var _this = this;
-                    this._twitchService = _twitchService;
-                    this.top_games = [];
-                    this.searchTerm = new common_1.Control();
-                    this._twitchService = _twitchService;
-                    this.items = this.searchTerm.valueChanges.debounceTime(300)
-                        .distinctUntilChanged()
-                        .switchMap(function (searchTerm) { return _this._twitchService.search(searchTerm); });
-                    this.term = this.searchTerm.value;
+                function AppComponent() {
                 }
-                AppComponent.prototype.getTopGames = function () {
-                    var _this = this;
-                    this.error = "";
-                    this._twitchService.getTopGames().subscribe(function (data) { return _this.top_games = data.top; });
-                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
@@ -82,7 +65,7 @@ System.register(['angular2/core', 'angular2/router', './twitch.service', 'angula
                             component: video_component_1.VideoComponent
                         }
                     ]), 
-                    __metadata('design:paramtypes', [twitch_service_1.TwitchService])
+                    __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             }());

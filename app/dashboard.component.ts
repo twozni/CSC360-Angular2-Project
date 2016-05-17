@@ -14,6 +14,7 @@ export class DashboardComponent{
     
     error:any;
     top_games:any[] = [];
+    featured_streams:any[] = [];
     term:string;
     items: Observable<Array<string>>;
     searchTerm = new Control();
@@ -21,16 +22,19 @@ export class DashboardComponent{
     constructor(private _twitchService: TwitchService){
         this._twitchService = _twitchService;
         
-        this.items = this.searchTerm.valueChanges.debounceTime(300)
-            .distinctUntilChanged()
-            .switchMap((searchTerm:string) => this._twitchService.search(searchTerm));
+        this.items = this._twitchService.searchGame(this.searchTerm);
             
         this.term = this.searchTerm.value;
     }
     
     getTopGames(){
         this.error = "";
-        this._twitchService.getTopGames().subscribe(data => this.top_games = data.top);
+        this._twitchService.getTopGames().subscribe(data => this.top_games = data);
+    }
+    
+    getFeaturedStreams(){
+        this._twitchService.featuredStreams().subscribe(data => this.featured_streams = data);
+        console.log(this.featured_streams);
     }
     
     

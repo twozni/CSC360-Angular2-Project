@@ -50,10 +50,15 @@ form {
 }
 
 div.game_grid{
-  align-content: center;
-  width: 1080px;
-  height: 580px;
-  margin: 0 auto;
+ margin: 0 auto;
+ align-content: center;
+ padding: 5em;
+}
+
+div.stream_grid{
+  padding: 5em;
+ margin: 0 auto;
+ align-content: center;
 }
 
 div.game {
@@ -74,6 +79,14 @@ p.name {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 150px;
+}
+
+p.stream.name{
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 320px;
 }
 
 p.status{

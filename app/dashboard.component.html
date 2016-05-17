@@ -9,9 +9,10 @@
                     <option *ngFor="#item of items | async">{{item.name}}</option>
             </datalist>
             <a href="http://www.twitch.tv/directory/game/{{term}}">Go</a>
+            <a (click)="getFeaturedStreams()">Featured Streams</a>
+            <a (click)="getTopGames()">Top Games</a>
         </form>
     </nav>
-    <button (click)="getTopGames()">Click To Get Top Games</button>
     <router-outlet></router-outlet>
     <div class="game_grid">
         <h1>Top Twitch Games</h1>
@@ -24,6 +25,21 @@
                     <p class="name">{{top.game.name}}</p>
                     <p class="data">{{top.viewers}} viewers</p>
                     <p class="data">{{top.channels}} channels live</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="stream_grid">
+        <h1>Featured Streams</h1>
+        <div class ="game" *ngFor="#stream of featured_streams">
+            <a class="game" style="text-decoration:none;" href="{{stream.stream.channel.url}}">
+                <div class="image">
+                    <img src="{{stream.stream.preview.medium}}" height="180" width="320">
+                </div>
+                <div class="meta">
+                    <p class="stream name">{{stream.stream.channel.display_name}} playing {{stream.stream.channel.game}}</p>
+                    <p class="data">{{stream.stream.viewers}} viewers</p>
                 </div>
             </a>
         </div>

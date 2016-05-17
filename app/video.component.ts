@@ -24,9 +24,7 @@ export class VideoComponent{
         
         this._twitchService = _twitchService;
         
-        this.games = this.searchTerm.valueChanges.debounceTime(300)
-            .distinctUntilChanged()
-            .switchMap((searchTerm:string) => this._twitchService.search(searchTerm));
+        this.games = this._twitchService.searchGame(this.searchTerm);
             
         this.term = this.searchTerm.value;
     } 

@@ -23,15 +23,14 @@ export class ChannelComponent{
     public http:Http){
         this._twitchService = _twitchService;
         
-        this.games = this.searchTerm.valueChanges.debounceTime(300)
-            .distinctUntilChanged()
-            .switchMap((searchTerm:string) => this._twitchService.search(searchTerm));
-            this.term = this.searchTerm.value;
+        this.games = this._twitchService.searchGame(this.searchTerm);
+            
+        this.term = this.searchTerm.value;
     } 
     
     
    searchChannels(term: string){
-       this._twitchService.searchChannels(term).subscribe(data => this.streams = data.streams);
+       this._twitchService.searchChannels(term).subscribe(data => this.streams = data);
        console.log(this.streams);
     }
     

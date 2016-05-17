@@ -26,20 +26,23 @@ System.register(['angular2/core', './twitch.service', 'angular2/common'], functi
         execute: function() {
             DashboardComponent = (function () {
                 function DashboardComponent(_twitchService) {
-                    var _this = this;
                     this._twitchService = _twitchService;
                     this.top_games = [];
+                    this.featured_streams = [];
                     this.searchTerm = new common_1.Control();
                     this._twitchService = _twitchService;
-                    this.items = this.searchTerm.valueChanges.debounceTime(300)
-                        .distinctUntilChanged()
-                        .switchMap(function (searchTerm) { return _this._twitchService.search(searchTerm); });
+                    this.items = this._twitchService.searchGame(this.searchTerm);
                     this.term = this.searchTerm.value;
                 }
                 DashboardComponent.prototype.getTopGames = function () {
                     var _this = this;
                     this.error = "";
-                    this._twitchService.getTopGames().subscribe(function (data) { return _this.top_games = data.top; });
+                    this._twitchService.getTopGames().subscribe(function (data) { return _this.top_games = data; });
+                };
+                DashboardComponent.prototype.getFeaturedStreams = function () {
+                    var _this = this;
+                    this._twitchService.featuredStreams().subscribe(function (data) { return _this.featured_streams = data; });
+                    console.log(this.featured_streams);
                 };
                 DashboardComponent = __decorate([
                     core_1.Component({

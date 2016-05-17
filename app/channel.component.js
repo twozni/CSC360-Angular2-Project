@@ -29,19 +29,16 @@ System.register(['angular2/core', './twitch.service', 'angular2/common', 'angula
         execute: function() {
             ChannelComponent = (function () {
                 function ChannelComponent(_twitchService, http) {
-                    var _this = this;
                     this._twitchService = _twitchService;
                     this.http = http;
                     this.searchTerm = new common_1.Control();
                     this._twitchService = _twitchService;
-                    this.games = this.searchTerm.valueChanges.debounceTime(300)
-                        .distinctUntilChanged()
-                        .switchMap(function (searchTerm) { return _this._twitchService.search(searchTerm); });
+                    this.games = this._twitchService.searchGame(this.searchTerm);
                     this.term = this.searchTerm.value;
                 }
                 ChannelComponent.prototype.searchChannels = function (term) {
                     var _this = this;
-                    this._twitchService.searchChannels(term).subscribe(function (data) { return _this.streams = data.streams; });
+                    this._twitchService.searchChannels(term).subscribe(function (data) { return _this.streams = data; });
                     console.log(this.streams);
                 };
                 ChannelComponent = __decorate([
