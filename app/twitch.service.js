@@ -29,11 +29,19 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     this.top_game_url = "https://api.twitch.tv/kraken/games/top";
                     this.http = http;
                 }
+                TwitchService.prototype.validateTerm = function (term) {
+                    if (term == null || term == "") {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                };
                 TwitchService.prototype.getTopGames = function () {
                     return this.http.get(this.top_game_url).map(function (res) { return res.json(); });
                 };
                 TwitchService.prototype.search = function (term) {
-                    if (term == null || term == "") {
+                    if (this.validateTerm(term)) {
                         return this.http.get('https://api.twitch.tv/kraken/search/games?q=empty&type=suggest')
                             .map(function (request) { return request.json().games; });
                     }
@@ -43,13 +51,23 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     }
                 };
                 TwitchService.prototype.searchChannels = function (term) {
-                    if (term == null || term == "") {
+                    if (this.validateTerm(term)) {
                         return this.http.get('https://api.twitch.tv/kraken/streams?game=test')
                             .map(function (request) { return request.json(); });
                     }
                     else {
                         return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term)
                             .map(function (request) { return request.json(); });
+                    }
+                };
+                TwitchService.prototype.searchVideos = function (term) {
+                    if (this.validateTerm(term)) {
+                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=test&period=month&limit=1')
+                            .map(function (request) { return request.json().videos; });
+                    }
+                    else {
+                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=' + term + '&period=month&limit=50')
+                            .map(function (request) { return request.json().videos; });
                     }
                 };
                 TwitchService = __decorate([

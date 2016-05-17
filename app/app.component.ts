@@ -5,6 +5,7 @@ import { Control } from 'angular2/common';
 import { Observable } from 'rxjs/Observable';
 import { DashboardComponent } from './dashboard.component';
 import { ChannelComponent } from './channel.component';
+import { VideoComponent } from './video.component';
 
 @Component({
     selector: 'my-app',
@@ -13,6 +14,7 @@ import { ChannelComponent } from './channel.component';
     <nav class="routes">
         <a [routerLink]="['Dashboard']">Dashboard</a>
         <a [routerLink]="['Channels']">Channels</a>
+        <a [routerLink]="['Videos']">Videos</a>
     </nav>
     <router-outlet></router-outlet>
     `,
@@ -36,6 +38,11 @@ import { ChannelComponent } from './channel.component';
       name: 'Channels',
       component: ChannelComponent
     },
+    {
+      path: '/videos',
+      name: 'Videos',
+      component: VideoComponent
+    }
 ])
 
 
@@ -53,7 +60,8 @@ export class AppComponent{
         this.items = this.searchTerm.valueChanges.debounceTime(300)
             .distinctUntilChanged()
             .switchMap((searchTerm:string) => this._twitchService.search(searchTerm));
-            this.term = this.searchTerm.value;
+            
+       this.term = this.searchTerm.value;
     }
     
     getTopGames(){
