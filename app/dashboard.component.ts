@@ -24,7 +24,8 @@ export class DashboardComponent{
         this.items = this.searchTerm.valueChanges.debounceTime(300)
             .distinctUntilChanged()
             .switchMap((searchTerm:string) => this._twitchService.search(searchTerm));
-            this.term = this.searchTerm.value;
+            
+        this.term = this.searchTerm.value;
     }
     
     getTopGames(){
