@@ -1,0 +1,35 @@
+<html>
+
+<body>
+    <h1>Simple Twitch</h1>
+    <nav>
+        <form>
+            <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="search games..." list="games" [(ngModel)]="term">
+            <button type="submit" (click)="searchVideos(term)">Search</button>
+            <datalist id="games">
+                    <option *ngFor="#game of games | async">{{game.name}}</option>
+            </datalist>
+        </form>
+    </nav>
+    <router-outlet></router-outlet>
+    <div class="game_grid">
+        <h1>Top videos for {{term}}</h1>
+        <div *ngIf="videos == 0">
+            <h3>No videos found</h3>
+        </div>
+        <div class="game" *ngFor="#video of videos">
+            <a style ="text-decoration:none;" href="{{video.url}}">
+                <div class="image">
+                    <img src={{video.preview}} height="240" width="320">
+                </div>
+                <div class="meta">
+                    <p class="name">{{video.channel.display_name}} on {{video.recorded_at}}</p>
+                    <p class="status">{{video.title}}</p>
+                    <p class="data">{{video.views}} views @ {{video.length}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
