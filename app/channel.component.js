@@ -41,6 +41,9 @@ System.register(['angular2/core', './twitch.service', 'angular2/common', 'angula
                     this._twitchService.searchChannels(term).subscribe(function (data) { return _this.streams = data; });
                     console.log(this.streams);
                 };
+                ChannelComponent.prototype.numFormat = function (num) {
+                    return this._twitchService.formatNumber(num);
+                };
                 ChannelComponent = __decorate([
                     core_1.Component({
                         selector: 'channels',

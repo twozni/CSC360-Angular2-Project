@@ -34,6 +34,10 @@ System.register(['angular2/core', './twitch.service', 'angular2/common'], functi
                     this.items = this._twitchService.searchGame(this.searchTerm);
                     this.term = this.searchTerm.value;
                 }
+                DashboardComponent.prototype.ngOnInit = function () {
+                    this.getTopGames();
+                    this.getFeaturedStreams();
+                };
                 DashboardComponent.prototype.getTopGames = function () {
                     var _this = this;
                     this.error = "";
@@ -43,6 +47,9 @@ System.register(['angular2/core', './twitch.service', 'angular2/common'], functi
                     var _this = this;
                     this._twitchService.featuredStreams().subscribe(function (data) { return _this.featured_streams = data; });
                     console.log(this.featured_streams);
+                };
+                DashboardComponent.prototype.numFormat = function (num) {
+                    return this._twitchService.formatNumber(num);
                 };
                 DashboardComponent = __decorate([
                     core_1.Component({

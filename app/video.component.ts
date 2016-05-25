@@ -35,6 +35,18 @@ export class VideoComponent{
        console.log(this.videos);
     }
     
+    strAsDate(dateStr){
+        return new Date(dateStr);
+    }
+    
+    secToHours(seconds){
+        return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+    }
+    
+    numFormat(num){
+        return this._twitchService.formatNumber(num);
+    }
+    
     
 
 }

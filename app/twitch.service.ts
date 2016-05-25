@@ -50,7 +50,7 @@ export class TwitchService{
             .map((request) => request.json().streams);
         }
         else{
-            return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term)
+            return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=50')
             .map((request) => request.json().streams);
         }
     }
@@ -68,6 +68,11 @@ export class TwitchService{
     
     featuredStreams(){
         return this.http.get('https://api.twitch.tv/kraken/streams/featured?limit=12').map(res  => res.json().featured);
+    }
+    
+    formatNumber(num){
+        var number = num;
+        return number.toLocaleString();
     }
     
     

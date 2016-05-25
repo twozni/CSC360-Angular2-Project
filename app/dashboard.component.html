@@ -9,8 +9,7 @@
                     <option *ngFor="#item of items | async">{{item.name}}</option>
             </datalist>
             <a href="http://www.twitch.tv/directory/game/{{term}}">Go</a>
-            <a (click)="getFeaturedStreams()">Featured Streams</a>
-            <a (click)="getTopGames()">Top Games</a>
+            <a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=t15oyqo1olgd8h9xmzrsc75ejr6wo2p&redirect_uri=http://localhost:3000/dashboard/&scope=user_follows_edit&force_verify=true">Login</a>
         </form>
     </nav>
     <router-outlet></router-outlet>
@@ -23,8 +22,8 @@
                 </div>
                 <div class="meta">
                     <p class="name">{{top.game.name}}</p>
-                    <p class="data">{{top.viewers}} viewers</p>
-                    <p class="data">{{top.channels}} channels live</p>
+                    <p class="data">{{numFormat(top.viewers)}} viewers</p>
+                    <p class="data">{{numFormat(top.channels)}} channels live</p>
                 </div>
             </a>
         </div>
@@ -39,7 +38,7 @@
                 </div>
                 <div class="meta">
                     <p class="stream name">{{stream.stream.channel.display_name}} playing {{stream.stream.channel.game}}</p>
-                    <p class="data">{{stream.stream.viewers}} viewers</p>
+                    <p class="data">with {{numFormat(stream.stream.viewers)}} viewers</p>
                 </div>
             </a>
         </div>

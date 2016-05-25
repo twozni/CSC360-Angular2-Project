@@ -23,9 +23,9 @@
                     <img src={{video.preview}} height="240" width="320">
                 </div>
                 <div class="meta">
-                    <p class="name">{{video.channel.display_name}} on {{video.recorded_at}}</p>
+                    <p class="name">{{video.channel.display_name}} on {{strAsDate(video.recorded_at) | date}}</p>
                     <p class="status">{{video.title}}</p>
-                    <p class="data">{{video.views}} views @ {{video.length}}</p>
+                    <p class="data">{{video.views}} views. Length: {{secToHours(video.length)}}</p>
                 </div>
             </a>
         </div>

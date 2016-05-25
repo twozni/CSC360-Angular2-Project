@@ -41,6 +41,15 @@ System.register(['angular2/core', './twitch.service', 'angular2/common', 'angula
                     this._twitchService.searchVideos(term).subscribe(function (data) { return _this.videos = data; });
                     console.log(this.videos);
                 };
+                VideoComponent.prototype.strAsDate = function (dateStr) {
+                    return new Date(dateStr);
+                };
+                VideoComponent.prototype.secToHours = function (seconds) {
+                    return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+                };
+                VideoComponent.prototype.numFormat = function (num) {
+                    return this._twitchService.formatNumber(num);
+                };
                 VideoComponent = __decorate([
                     core_1.Component({
                         selector: 'videos',

@@ -52,11 +52,11 @@ form {
 div.game_grid{
  margin: 0 auto;
  align-content: center;
- padding: 5em;
+ padding: 5em 5em 0em 5em;
 }
 
 div.stream_grid{
-  padding: 5em;
+  padding: 1em 5em 5em 5em;
  margin: 0 auto;
  align-content: center;
 }

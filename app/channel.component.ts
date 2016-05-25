@@ -34,6 +34,10 @@ export class ChannelComponent{
        console.log(this.streams);
     }
     
+    numFormat(num){
+        return this._twitchService.formatNumber(num);
+    }
+    
     
 
 }

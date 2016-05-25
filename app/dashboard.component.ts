@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import { Router } from 'angular2/router';
 import { TwitchService } from './twitch.service';
 import { Control } from 'angular2/common';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['app/dashboard.component.css']
 })
 
-export class DashboardComponent{ 
+export class DashboardComponent implements OnInit{ 
     
     error:any;
     top_games:any[] = [];
@@ -27,6 +27,11 @@ export class DashboardComponent{
         this.term = this.searchTerm.value;
     }
     
+    ngOnInit(){
+        this.getTopGames();
+        this.getFeaturedStreams();
+    }
+    
     getTopGames(){
         this.error = "";
         this._twitchService.getTopGames().subscribe(data => this.top_games = data);
@@ -35,6 +40,10 @@ export class DashboardComponent{
     getFeaturedStreams(){
         this._twitchService.featuredStreams().subscribe(data => this.featured_streams = data);
         console.log(this.featured_streams);
+    }
+    
+    numFormat(num){
+        return this._twitchService.formatNumber(num);
     }
     
     

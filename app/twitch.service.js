@@ -62,7 +62,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                             .map(function (request) { return request.json().streams; });
                     }
                     else {
-                        return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term)
+                        return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=50')
                             .map(function (request) { return request.json().streams; });
                     }
                 };
@@ -78,6 +78,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                 };
                 TwitchService.prototype.featuredStreams = function () {
                     return this.http.get('https://api.twitch.tv/kraken/streams/featured?limit=12').map(function (res) { return res.json().featured; });
+                };
+                TwitchService.prototype.formatNumber = function (num) {
+                    var number = num;
+                    return number.toLocaleString();
                 };
                 TwitchService = __decorate([
                     core_1.Injectable(), 

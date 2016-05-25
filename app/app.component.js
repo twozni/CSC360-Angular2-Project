@@ -63,7 +63,7 @@ System.register(['angular2/core', 'angular2/router', './twitch.service', './dash
                             path: '/videos',
                             name: 'Videos',
                             component: video_component_1.VideoComponent
-                        }
+                        },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

@@ -42,10 +42,16 @@ import { VideoComponent } from './video.component';
       path: '/videos',
       name: 'Videos',
       component: VideoComponent
-    }
+    },
+    // {
+    //     path:'/login',
+    //     name: 'Twitch',
+    //     component: LoginComponent
+    // }
 ])
 
 
 export class AppComponent{
+    
     
 }
