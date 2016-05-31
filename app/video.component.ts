@@ -18,6 +18,7 @@ export class VideoComponent{
     videos: Observable<Array<string>>;
     games: Observable<Array<string>>;
     searchTerm = new Control();
+    limit:number = 25;
     
     constructor(private _twitchService: TwitchService,
     public http:Http){
@@ -30,8 +31,8 @@ export class VideoComponent{
     } 
     
     
-   searchVideos(term: string){
-       this._twitchService.searchVideos(term).subscribe(data => this.videos = data);
+   searchVideos(term: string, limit: number){
+       this._twitchService.searchVideos(term, limit).subscribe(data => this.videos = data);
        console.log(this.videos);
     }
     

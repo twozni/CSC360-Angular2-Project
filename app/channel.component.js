@@ -32,17 +32,21 @@ System.register(['angular2/core', './twitch.service', 'angular2/common', 'angula
                     this._twitchService = _twitchService;
                     this.http = http;
                     this.searchTerm = new common_1.Control();
+                    this.limit = 25;
                     this._twitchService = _twitchService;
                     this.games = this._twitchService.searchGame(this.searchTerm);
                     this.term = this.searchTerm.value;
                 }
-                ChannelComponent.prototype.searchChannels = function (term) {
+                ChannelComponent.prototype.searchChannels = function (term, limit) {
                     var _this = this;
-                    this._twitchService.searchChannels(term).subscribe(function (data) { return _this.streams = data; });
+                    this._twitchService.searchChannels(term, limit).subscribe(function (data) { return _this.streams = data; });
                     console.log(this.streams);
                 };
                 ChannelComponent.prototype.numFormat = function (num) {
                     return this._twitchService.formatNumber(num);
+                };
+                ChannelComponent.prototype.roundFps = function (num) {
+                    return Math.floor(num);
                 };
                 ChannelComponent = __decorate([
                     core_1.Component({

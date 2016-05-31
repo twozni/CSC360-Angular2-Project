@@ -44,26 +44,31 @@ export class TwitchService{
         }
     }
     
-    searchChannels(term: string){
+    searchChannels(term: string, limit: number){
        if (this.validateTerm(term)){
-             return this.http.get('https://api.twitch.tv/kraken/streams?game=test')
+             return this.http.get('https://api.twitch.tv/kraken/streams?game=null')
             .map((request) => request.json().streams);
         }
         else{
-            return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=50')
+            return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=' + limit)
             .map((request) => request.json().streams);
         }
     }
     
-    searchVideos(term: string){
+    searchVideos(term: string, limit: number){
+        console.log(limit);
         if(this.validateTerm(term)){
-            return this.http.get('https://api.twitch.tv/kraken/videos/top?game=test&period=month&limit=1')
+            return this.http.get('https://api.twitch.tv/kraken/videos/top?game=null&period=month&limit=1')
             .map((request) => request.json().videos);
         }
         else{
-            return this.http.get('https://api.twitch.tv/kraken/videos/top?game=' + term + '&period=month&limit=50')
+            return this.http.get('https://api.twitch.tv/kraken/videos/top?game=' + term + '&period=month&limit=' + limit)
             .map((request) => request.json().videos);
         }
+    }
+    
+    getRandomStreams(){
+        return this.http.get('https://api.twitch.tv/kraken/beta/streams/random').map((request) => request.json().streams);
     }
     
     featuredStreams(){

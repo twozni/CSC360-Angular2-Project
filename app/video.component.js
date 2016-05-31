@@ -32,13 +32,14 @@ System.register(['angular2/core', './twitch.service', 'angular2/common', 'angula
                     this._twitchService = _twitchService;
                     this.http = http;
                     this.searchTerm = new common_1.Control();
+                    this.limit = 25;
                     this._twitchService = _twitchService;
                     this.games = this._twitchService.searchGame(this.searchTerm);
                     this.term = this.searchTerm.value;
                 }
-                VideoComponent.prototype.searchVideos = function (term) {
+                VideoComponent.prototype.searchVideos = function (term, limit) {
                     var _this = this;
-                    this._twitchService.searchVideos(term).subscribe(function (data) { return _this.videos = data; });
+                    this._twitchService.searchVideos(term, limit).subscribe(function (data) { return _this.videos = data; });
                     console.log(this.videos);
                 };
                 VideoComponent.prototype.strAsDate = function (dateStr) {

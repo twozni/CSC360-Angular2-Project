@@ -18,6 +18,9 @@ export class ChannelComponent{
     streams: Observable<Array<string>>;
     games: Observable<Array<string>>;
     searchTerm = new Control();
+    limit:number = 25;
+    
+    gameImage:string;
     
     constructor(private _twitchService: TwitchService,
     public http:Http){
@@ -29,13 +32,17 @@ export class ChannelComponent{
     } 
     
     
-   searchChannels(term: string){
-       this._twitchService.searchChannels(term).subscribe(data => this.streams = data);
+   searchChannels(term: string, limit: number){
+       this._twitchService.searchChannels(term, limit).subscribe(data => this.streams = data);
        console.log(this.streams);
     }
     
     numFormat(num){
         return this._twitchService.formatNumber(num);
+    }
+    
+    roundFps(num){
+        return Math.floor(num);
     }
     
     

@@ -1,14 +1,23 @@
 <html>
 
 <body>
-    <h1>Simple Twitch</h1>
     <nav>
         <form>
-            <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="search games..." list="games" [(ngModel)]="term">
-            <button type="submit" (click)="searchChannels(term)">Search</button>
-            <datalist id="games">
-                    <option *ngFor="#game of games | async">{{game.name}}</option>
-            </datalist>
+            <div class="search-style">
+                <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="Search games..." list="games" [(ngModel)]="term">
+                <button type="submit" (click)="searchChannels(term, limit)">Search</button>
+                <datalist id="games">
+                        <option *ngFor="#game of games | async">{{game.name}}</option>
+                </datalist>
+            </div>
+            <div class="select-style">
+                <select [(ngModel)]="limit" (ngModelChange)="searchChannels(term, limit)">
+                    <option value="25" selected>View 25</option>
+                    <option value="50">View 50</option>
+                    <option value="75">View 75</option>
+                    <option value="100">View 100</option>
+                </select>
+            </div>
         </form>
     </nav>
     <router-outlet></router-outlet>
@@ -22,12 +31,12 @@
                 <div class="image">
                     <img src={{stream.preview.medium}} height="180" width="320">
                 </div>
-                <div class="meta">
-                    <p class="name">{{stream.channel.display_name}}</p>
-                    <p class="status">{{stream.channel.status}}</p>
-                    <p class="data">{{numFormat(stream.viewers)}} viewers</p>
-                </div>
             </a>
+           <div class="meta">
+                <a class="status" href="http://www.twitch.tv/{{stream.channel.name}}">{{stream.channel.status}}</a>
+                <a class="name" href="http://www.twitch.tv/{{stream.channel.name}}/profile">{{stream.channel.display_name}}</a>
+                <p class="data">with {{numFormat(stream.viewers)}} viewers @ {{roundFps(stream.average_fps)}} FPS</p>
+           </div>
         </div>
     </div>
 </body>

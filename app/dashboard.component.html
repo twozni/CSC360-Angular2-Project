@@ -1,17 +1,6 @@
 <html>
 
 <body>
-    <h1>Simple Twitch</h1>
-    <nav>
-        <form>
-            <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="search games..." list="games" [(ngModel)]="term">
-            <datalist id="games">
-                    <option *ngFor="#item of items | async">{{item.name}}</option>
-            </datalist>
-            <a href="http://www.twitch.tv/directory/game/{{term}}">Go</a>
-            <a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=t15oyqo1olgd8h9xmzrsc75ejr6wo2p&redirect_uri=http://localhost:3000/dashboard/&scope=user_follows_edit&force_verify=true">Login</a>
-        </form>
-    </nav>
     <router-outlet></router-outlet>
     <div class="game_grid">
         <h1>Top Twitch Games</h1>
@@ -20,7 +9,7 @@
                 <div class="image">
                     <img src={{top.game.box.medium}} height="190" width="136">
                 </div>
-                <div class="meta">
+                <div>
                     <p class="name">{{top.game.name}}</p>
                     <p class="data">{{numFormat(top.viewers)}} viewers</p>
                     <p class="data">{{numFormat(top.channels)}} channels live</p>
@@ -36,11 +25,14 @@
                 <div class="image">
                     <img src="{{stream.stream.preview.medium}}" height="180" width="320">
                 </div>
-                <div class="meta">
-                    <p class="stream name">{{stream.stream.channel.display_name}} playing {{stream.stream.channel.game}}</p>
-                    <p class="data">with {{numFormat(stream.stream.viewers)}} viewers</p>
-                </div>
             </a>
+                <div>
+                    <div class="meta">
+                        <a class="profile" href="http://twitch.tv/{{stream.stream.channel.display_name}}/profile">{{stream.stream.channel.display_name}}</a> 
+                        <p class="current_game">playing {{stream.stream.channel.game}}</p>
+                        <p class="data">with {{numFormat(stream.stream.viewers)}} viewers</p>
+                    </div>
+                </div>
         </div>
     </div>
 </body>

@@ -56,25 +56,29 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                             .map(function (request) { return request.json().games; });
                     }
                 };
-                TwitchService.prototype.searchChannels = function (term) {
+                TwitchService.prototype.searchChannels = function (term, limit) {
                     if (this.validateTerm(term)) {
-                        return this.http.get('https://api.twitch.tv/kraken/streams?game=test')
+                        return this.http.get('https://api.twitch.tv/kraken/streams?game=null')
                             .map(function (request) { return request.json().streams; });
                     }
                     else {
-                        return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=50')
+                        return this.http.get('https://api.twitch.tv/kraken/streams?game=' + term + '&limit=' + limit)
                             .map(function (request) { return request.json().streams; });
                     }
                 };
-                TwitchService.prototype.searchVideos = function (term) {
+                TwitchService.prototype.searchVideos = function (term, limit) {
+                    console.log(limit);
                     if (this.validateTerm(term)) {
-                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=test&period=month&limit=1')
+                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=null&period=month&limit=1')
                             .map(function (request) { return request.json().videos; });
                     }
                     else {
-                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=' + term + '&period=month&limit=50')
+                        return this.http.get('https://api.twitch.tv/kraken/videos/top?game=' + term + '&period=month&limit=' + limit)
                             .map(function (request) { return request.json().videos; });
                     }
+                };
+                TwitchService.prototype.getRandomStreams = function () {
+                    return this.http.get('https://api.twitch.tv/kraken/beta/streams/random').map(function (request) { return request.json().streams; });
                 };
                 TwitchService.prototype.featuredStreams = function () {
                     return this.http.get('https://api.twitch.tv/kraken/streams/featured?limit=12').map(function (res) { return res.json().featured; });

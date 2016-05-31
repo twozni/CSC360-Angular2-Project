@@ -6,15 +6,20 @@ import { Observable } from 'rxjs/Observable';
 import { DashboardComponent } from './dashboard.component';
 import { ChannelComponent } from './channel.component';
 import { VideoComponent } from './video.component';
+import { StreamerComponent } from './streamer.component';
+import { RandomStreamComponent } from './random-stream.component'
 
 @Component({
     selector: 'my-app',
     template: `
     <h1>{{title}}</h1>
     <nav class="routes">
+        <img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" height="25">
         <a [routerLink]="['Dashboard']">Dashboard</a>
         <a [routerLink]="['Channels']">Channels</a>
         <a [routerLink]="['Videos']">Videos</a>
+        <a [routerLink]="['Streamer']">Streamer</a>
+        <a [routerLink]="['Random']">Random Streams</a>
     </nav>
     <router-outlet></router-outlet>
     `,
@@ -43,11 +48,16 @@ import { VideoComponent } from './video.component';
       name: 'Videos',
       component: VideoComponent
     },
-    // {
-    //     path:'/login',
-    //     name: 'Twitch',
-    //     component: LoginComponent
-    // }
+    {
+      path: '/streamer',
+      name: 'Streamer',
+      component: StreamerComponent  
+    },
+    {
+        path:'/random',
+        name: 'Random',
+        component: RandomStreamComponent
+    }
 ])
 
 

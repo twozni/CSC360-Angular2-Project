@@ -14,6 +14,33 @@ body{
   padding: 1.5em;
 }
 
+.select-style {
+    display: inline-block;
+    border: 1px solid #ccc;
+    width: 100px;
+    border-radius: 3px;
+    background: #fafafa url("https://lh3.ggpht.com/O6M43xfWwf_sXtZk_3wv53tGmG6Y-Dtod3_gY6IyuJvEmzhYAcwuNxR1yqAJ9Zacu8vynktJ-w=w16") no-repeat 90% 50%;
+}
+
+.search-style{
+  display: inline-block;
+  width: 250px;
+}
+
+.select-style select {
+    padding: 5px 5px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
 h1 {
   font-size: 1.2em;
   color: black;
@@ -55,6 +82,10 @@ div.game_grid{
  align-content: center;
 }
 
+div.frame{
+  display: inline-block;
+}
+
 div.game {
   font-size: 1em;
   margin:1em;
@@ -62,22 +93,43 @@ div.game {
   display: inline-block;
 }
 
-p.name {
-  color: white;
+a.name {
+  margin: 5px 0 0 0;
+  color: #EEEEEE;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 320px;
-  margin: 0.5em;
+  font-size: 0.8em;
+  text-decoration: none;
 }
 
-p.status{
-  color: #212121;
+a.video_name {
+  margin: 5px 0 0 0;
+  color: #EEEEEE;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 300px;
-  margin: 0.5em;
+  width: 320px;
+  font-size: 0.8em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+div.meta{
+  padding: 8px 0 0 0;
+  width: 320px;
+  display: inline-block;
+}
+
+a.status{
+  color: #424242;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 320px;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
 }
 
 h3 {
@@ -85,9 +137,17 @@ h3 {
 }
 
 p.data {
-  color: #212121;
+  color: #424242;
   font-size: 0.8em;
-  margin: 0.6em;
+  padding: 8px 0 0 0;
+  margin: 0;
+  display: inline;
+}
+
+p.video_data {
+  color: #424242;
+  font-size: 0.8em;
+  margin: 8px 0 0 0;
 }
 
 input[type=text] {

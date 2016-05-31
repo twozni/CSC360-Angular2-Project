@@ -1,14 +1,21 @@
 <html>
 
 <body>
-    <h1>Simple Twitch</h1>
     <nav>
         <form>
             <input id="searchbar" type="text" [ngFormControl]="searchTerm" placeholder="search games..." list="games" [(ngModel)]="term">
-            <button type="submit" (click)="searchVideos(term)">Search</button>
+            <button type="submit" (click)="searchVideos(term, limit)">Search</button>
             <datalist id="games">
                     <option *ngFor="#game of games | async">{{game.name}}</option>
             </datalist>
+            <div class="select-style">
+                <select [(ngModel)]="limit" (ngModelChange)="searchVideos(term, limit)">
+                    <option value="25" selected>View 25</option>
+                    <option value="50">View 50</option>
+                    <option value="75">View 75</option>
+                    <option value="100">View 100</option>
+                </select>
+            </div>
         </form>
     </nav>
     <router-outlet></router-outlet>
@@ -22,12 +29,12 @@
                 <div class="image">
                     <img src={{video.preview}} height="240" width="320">
                 </div>
-                <div class="meta">
-                    <p class="name">{{video.channel.display_name}} on {{strAsDate(video.recorded_at) | date}}</p>
-                    <p class="status">{{video.title}}</p>
-                    <p class="data">{{video.views}} views. Length: {{secToHours(video.length)}}</p>
-                </div>
             </a>
+            <div class="meta">
+                    <a class="status" href="{{video.url}}">{{video.title}}</a>
+                    <a class="video_name" href="http://www.twitch.tv/{{video.channel.display_name}}/profile">{{video.channel.display_name}} on {{strAsDate(video.recorded_at) | date}}</a>
+                    <p class="video_data">{{numFormat(video.views)}} views. Length: {{secToHours(video.length)}}</p>
+            </div>
         </div>
     </div>
 </body>
